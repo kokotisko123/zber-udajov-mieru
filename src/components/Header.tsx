@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChartLineUp, PiggyBank } from "lucide-react";
+import { ChartLine, PiggyBank } from "lucide-react";
 
 export const Header = () => {
   return (
@@ -14,7 +14,7 @@ export const Header = () => {
         transition={{ type: "spring", stiffness: 300 }}
       >
         <PiggyBank className="w-8 h-8" />
-        <ChartLineUp className="w-8 h-8" />
+        <ChartLine className="w-8 h-8" />
         <span className="text-xl font-bold">FinančnéRiešenia</span>
       </motion.div>
     </motion.header>
