@@ -6,7 +6,11 @@ import { Label } from "./ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { toast } from "./ui/use-toast";
 
-export const Questionnaire = () => {
+interface QuestionnaireProps {
+  onSubmit: (data: any) => void;
+}
+
+export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
   const [formData, setFormData] = useState({
     goal: "",
     employmentType: "",
@@ -17,14 +21,22 @@ export const Questionnaire = () => {
     address: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log(formData);
-    toast({
-      title: "Formulár bol úspešne odoslaný",
-      description: "Čoskoro vás budeme kontaktovať.",
-    });
+    try {
+      await onSubmit(formData);
+      setFormData({
+        goal: "",
+        employmentType: "",
+        financialObligations: "",
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,7 +47,13 @@ export const Questionnaire = () => {
   };
 
   return (
-    <section id="questionnaire" className="py-16 px-4 bg-gray-50">
+    <motion.section 
+      id="questionnaire" 
+      className="py-16 px-4 bg-gray-50"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -145,6 +163,6 @@ export const Questionnaire = () => {
           </Button>
         </form>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
