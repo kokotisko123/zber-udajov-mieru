@@ -66,7 +66,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
           Nechajte nám kontakt a my sa vám v krátkom čase ozveme. Po odoslaní formulára vám budú zaslané ďalšie informácie na vašu e-mailovú adresu.
         </p>
         <div className="mb-12">
-          <div className="h-1 w-24 bg-white mb-2" />
+          <div className="h-1 w-24 bg-[#0EA5E9] mb-2" />
           <span className="text-sm text-gray-400">Krok 1 z 3</span>
         </div>
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -135,7 +135,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 
           <Button
             type="submit"
-            className="w-full bg-white hover:bg-gray-100 text-black h-12 rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
+            className="w-full bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white h-12 rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
           >
             Odoslať
           </Button>

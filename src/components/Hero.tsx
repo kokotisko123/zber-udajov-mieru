@@ -9,7 +9,7 @@ export const Hero = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen flex flex-col items-start justify-center px-6 md:px-12 py-16 bg-black text-white relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0c1220] to-black opacity-90" />
       
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -26,7 +26,7 @@ export const Hero = () => {
         <Button 
           size="lg"
           onClick={() => document.getElementById('questionnaire')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
+          className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white px-8 py-6 text-lg rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
         >
           Vyplniť dotazník
         </Button>
