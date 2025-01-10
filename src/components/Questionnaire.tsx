@@ -4,7 +4,6 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { toast } from "./ui/use-toast";
 
 interface QuestionnaireProps {
   onSubmit: (data: any) => void;
@@ -16,9 +15,9 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
     employmentType: "",
     financialObligations: "",
     name: "",
+    surname: "",
     email: "",
     phone: "",
-    address: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,16 +29,16 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
         employmentType: "",
         financialObligations: "",
         name: "",
+        surname: "",
         email: "",
         phone: "",
-        address: "",
       });
     } catch (error) {
       console.error('Error submitting form:', error);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -49,7 +48,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
   return (
     <motion.section 
       id="questionnaire" 
-      className="py-16 px-4 bg-gray-50"
+      className="py-24 px-6 md:px-12 bg-black text-white"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -58,108 +57,87 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8"
+        className="max-w-2xl mx-auto"
       >
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
-          Vyplňte krátky dotazník
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          Buďte pri začiatku
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-4">
-            <Label>Aké sú vaše hlavné ciele?</Label>
-            <RadioGroup
-              onValueChange={(value) => setFormData(prev => ({ ...prev, goal: value }))}
-              className="space-y-2"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="higher-pn" id="higher-pn" />
-                <Label htmlFor="higher-pn">Vyššia PN</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="early-mortgage" id="early-mortgage" />
-                <Label htmlFor="early-mortgage">Skoršie splatenie hypotéky</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="interest-savings" id="interest-savings" />
-                <Label htmlFor="interest-savings">Úspora na úrokoch</Label>
-              </div>
-            </RadioGroup>
-          </div>
-
-          <div className="space-y-4">
-            <Label>Ste SZČO alebo zamestnanec?</Label>
-            <RadioGroup
-              onValueChange={(value) => setFormData(prev => ({ ...prev, employmentType: value }))}
-              className="space-y-2"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="szco" id="szco" />
-                <Label htmlFor="szco">SZČO</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="employee" id="employee" />
-                <Label htmlFor="employee">Zamestnanec</Label>
-              </div>
-            </RadioGroup>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="financialObligations">
-              Aké máte aktuálne finančné záväzky?
-            </Label>
-            <Input
-              id="financialObligations"
-              name="financialObligations"
-              onChange={handleChange}
-              placeholder="Napr. hypotéka, pôžička..."
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <p className="text-xl text-gray-400 mb-12">
+          Nechajte nám kontakt a my sa vám v krátkom čase ozveme. Po odoslaní formulára vám budú zaslané ďalšie informácie na vašu e-mailovú adresu.
+        </p>
+        <div className="mb-12">
+          <div className="h-1 w-24 bg-white mb-2" />
+          <span className="text-sm text-gray-400">Krok 1 z 3</span>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
-              <Label htmlFor="name">Meno</Label>
+              <Label className="text-white text-lg">Meno</Label>
               <Input
-                id="name"
                 name="name"
                 onChange={handleChange}
                 required
+                className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label className="text-white text-lg">Priezvisko</Label>
               <Input
-                id="email"
+                name="surname"
+                onChange={handleChange}
+                required
+                className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-white text-lg">E-mail</Label>
+              <Input
                 name="email"
                 type="email"
                 onChange={handleChange}
                 required
+                className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Telefón</Label>
+              <Label className="text-white text-lg">Telefónne číslo</Label>
               <Input
-                id="phone"
                 name="phone"
                 type="tel"
                 onChange={handleChange}
                 required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="address">Adresa</Label>
-              <Input
-                id="address"
-                name="address"
-                onChange={handleChange}
-                required
+                placeholder="SK +421"
+                className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
               />
             </div>
           </div>
 
+          <div className="space-y-4">
+            <Label className="text-white text-lg">Vyberte z možností</Label>
+            <RadioGroup
+              onValueChange={(value) => setFormData(prev => ({ ...prev, goal: value }))}
+              className="space-y-4"
+            >
+              <div className="flex items-center space-x-3">
+                <RadioGroupItem value="higher-pn" id="higher-pn" className="border-white" />
+                <Label htmlFor="higher-pn" className="text-white">Vyššia PN</Label>
+              </div>
+              <div className="flex items-center space-x-3">
+                <RadioGroupItem value="early-mortgage" id="early-mortgage" className="border-white" />
+                <Label htmlFor="early-mortgage" className="text-white">Skoršie splatenie hypotéky</Label>
+              </div>
+              <div className="flex items-center space-x-3">
+                <RadioGroupItem value="interest-savings" id="interest-savings" className="border-white" />
+                <Label htmlFor="interest-savings" className="text-white">Úspora na úrokoch</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
           <Button
             type="submit"
-            className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
+            className="w-full bg-white hover:bg-gray-100 text-black h-12 rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
           >
-            Odoslať dotazník
+            Odoslať
           </Button>
         </form>
       </motion.div>

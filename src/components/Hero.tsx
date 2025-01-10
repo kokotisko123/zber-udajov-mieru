@@ -7,24 +7,26 @@ export const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-16 bg-gradient-to-b from-white to-gray-50"
+      className="min-h-screen flex flex-col items-start justify-center px-6 md:px-12 py-16 bg-black text-white relative overflow-hidden"
     >
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90" />
+      
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="max-w-3xl mx-auto"
+        className="relative z-10 max-w-3xl"
       >
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
           Finančné riešenia pre vašu budúcnosť
         </h1>
-        <p className="text-xl text-gray-600 mb-8">
+        <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
           Či už chcete vyššiu PN, splatiť hypotéku skôr, alebo ušetriť na úrokoch, máme pre vás riešenie na mieru.
         </p>
         <Button 
           size="lg"
           onClick={() => document.getElementById('questionnaire')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
+          className="bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
         >
           Vyplniť dotazník
         </Button>
