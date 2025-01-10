@@ -1,12 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Hero } from "@/components/Hero";
+import { ServiceSection } from "@/components/ServiceSection";
+import { Benefits } from "@/components/Benefits";
+import { Questionnaire } from "@/components/Questionnaire";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <Hero />
+      
+      <ServiceSection
+        title="Ste SZČO a chcete mať PN 1 200 € mesačne?"
+        description="Ako SZČO často myslíte najmä na prácu. Ale čo ak by ste nemohli pracovať? Ukážeme vám, ako si nastaviť poistenie, ktoré vám poskytne dostatok financií aj počas pracovnej neschopnosti."
+        cta="Zistite viac"
+      />
+      
+      <ServiceSection
+        title="Chcete splatiť hypotéku o 5-10 rokov skôr?"
+        description="Hypotéka nemusí byť doživotný záväzok. Správne nastavenie splátok a financovania vám môže ušetriť tisíce eur a výrazne skrátiť čas splácania. Pomôžeme vám nájsť optimálne riešenie."
+        cta="Získajte riešenie"
+        isReversed
+      />
+      
+      <ServiceSection
+        title="Pre rodiny - Zabezpečte si finančnú istotu"
+        description="Môžu prísť nečakané situácie. S našimi riešeniami si môžete nastaviť poistenie tak, aby vám v prípade zdravotných problémov naozaj pomohlo."
+        cta="Zabezpečte sa"
+      />
+      
+      <Benefits />
+      <Questionnaire />
     </div>
   );
 };
