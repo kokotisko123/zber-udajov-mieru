@@ -14,7 +14,7 @@ export const Header = () => {
         transition={{ type: "spring", stiffness: 300 }}
       >
         <ChartLine className="w-6 h-6 text-[#0EA5E9]" />
-        <span className="text-2xl font-bold tracking-wider">PENTA FUND</span>
+        <span className="text-2xl font-bold tracking-wider">XYZ</span>
       </motion.div>
       <div className="text-white border border-white/20 px-4 py-2">
         SK

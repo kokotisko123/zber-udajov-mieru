@@ -3,13 +3,13 @@ import { ServiceSection } from "@/components/ServiceSection";
 import { Benefits } from "@/components/Benefits";
 import { Questionnaire } from "@/components/Questionnaire";
 import { Header } from "@/components/Header";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 const Index = () => {
   const handleFormSubmit = async (formData: any) => {
     try {
-      // You would replace this URL with your actual form submission endpoint
-      const response = await fetch('https://api.sheetmonkey.io/form/YOUR_FORM_ID', {
+      // Using a mock API endpoint for demonstration
+      const response = await fetch('https://api.example.com/submit-form', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -18,21 +18,26 @@ const Index = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        toast({
-          title: "Formulár úspešne odoslaný",
-          description: "Ďakujeme za váš záujem. Budeme vás čoskoro kontaktovať.",
-        });
-      } else {
-        throw new Error('Failed to submit form');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+
+      const data = await response.json();
+      
+      toast({
+        title: "Formulár úspešne odoslaný",
+        description: "Ďakujeme za váš záujem. Budeme vás čoskoro kontaktovať.",
+      });
+
+      return data;
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
         variant: "destructive",
         title: "Chyba pri odosielaní",
-        description: "Prosím, skúste to znova neskôr.",
+        description: "Prosím, skontrolujte svoje internetové pripojenie a skúste to znova.",
       });
+      throw error;
     }
   };
 
