@@ -8,10 +8,7 @@ import { toast } from "@/hooks/use-toast";
 const Index = () => {
   const handleFormSubmit = async (formData: any) => {
     try {
-      // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Log the form data to console for debugging
       console.log('Form submitted with data:', formData);
       
       toast({
@@ -36,23 +33,26 @@ const Index = () => {
       <Header />
       <Hero />
       <ServiceSection
-        title="Ste SZČO a chcete mať PN 1 200 € mesačne?"
-        description="Ako SZČO často myslíte najmä na prácu. Ale čo ak by ste nemohli pracovať? Ukážeme vám, ako si nastaviť poistenie, ktoré vám poskytne dostatok financií aj počas pracovnej neschopnosti."
+        title="Lacnejšia Hypotéka"
+        description="Máte drahú hypotéku? Ušetríme vám stovky eur! Nenechajte banku zarábať na vás viac, než je nutné. Porovnáme za vás podmienky, vyjednáme nižšie splátky a pomôžeme vám ušetriť. Nečakajte na zmenu, kontaktujte nás a začnite šetriť ešte dnes!"
         cta="Zistite viac"
       />
       <ServiceSection
-        title="Chcete splatiť hypotéku o 5-10 rokov skôr?"
-        description="Hypotéka nemusí byť doživotný záväzok. Správne nastavenie splátok a financovania vám môže ušetriť tisíce eur a výrazne skrátiť čas splácania. Pomôžeme vám nájsť optimálne riešenie."
-        cta="Získajte riešenie"
+        title="Hypotéky pre SZČO"
+        description="Ste živnostník a máte obavy, že banka neuzná váš príjem? Pomôžeme vám získať hypotéku aj pri zložitejších podmienkach. Analyzujeme váš príjem, pripravíme potrebné podklady a nájdeme riešenie, ktoré vyhovuje vám aj banke."
+        cta="Zistite viac"
         isReversed
       />
       <ServiceSection
-        title="Pre rodiny - Zabezpečte si finančnú istotu"
-        description="Môžu prísť nečakané situácie. S našimi riešeniami si môžete nastaviť poistenie tak, aby vám v prípade zdravotných problémov naozaj pomohlo."
-        cta="Zabezpečte sa"
+        title="Financovanie výstavby"
+        description="Plánujete postaviť svoj vysnívaný dom? Financovanie výstavby môže byť komplikované, no my vás prevedieme každým krokom – od prvotného schválenia hypotéky až po čerpanie financií na jednotlivé etapy výstavby. Všetko bez zbytočných starostí."
+        cta="Zistite viac"
       />
       <Benefits />
       <Questionnaire onSubmit={handleFormSubmit} />
+      <footer className="py-6 text-center text-gray-400">
+        © 2025 - budovaniemajetku.sk
+      </footer>
     </div>
   );
 };

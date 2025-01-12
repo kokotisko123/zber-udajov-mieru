@@ -26,7 +26,7 @@ export const Hero = () => {
         <Button 
           size="lg"
           onClick={() => document.getElementById('questionnaire')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white px-8 py-6 text-lg rounded-none transition-all duration-300 transform hover:translate-y-[-2px]"
+          className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:translate-y-[-2px]"
         >
           Vyplniť dotazník
         </Button>

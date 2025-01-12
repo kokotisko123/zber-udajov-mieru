@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChartLine } from "lucide-react";
+import Image from "next/image";
 
 export const Header = () => {
   return (
@@ -13,12 +13,13 @@ export const Header = () => {
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <ChartLine className="w-6 h-6 text-[#0EA5E9]" />
-        <span className="text-2xl font-bold tracking-wider">XYZ</span>
+        <img 
+          src="/lovable-uploads/51b19b55-d85b-48bf-9bd3-d9feab921004.png" 
+          alt="Logo" 
+          className="w-[200px] h-[200px] object-contain"
+        />
+        <span className="text-2xl font-bold tracking-wider">budovaniemajetku.sk</span>
       </motion.div>
-      <div className="text-white border border-white/20 px-4 py-2">
-        SK
-      </div>
     </motion.header>
   );
 };
