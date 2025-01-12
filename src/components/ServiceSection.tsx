@@ -18,10 +18,10 @@ export const ServiceSection = ({
 }: ServiceSectionProps) => {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.3 }}
       className={`py-16 px-4 ${isReversed ? 'bg-black' : 'bg-[#0c1220]'}`}
     >
       <div className="max-w-4xl mx-auto">
@@ -41,6 +41,7 @@ export const ServiceSection = ({
               src={imagePath} 
               alt={title}
               className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
+              loading="lazy"
             />
           </div>
         </div>
