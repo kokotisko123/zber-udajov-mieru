@@ -8,34 +8,24 @@ import { toast } from "@/hooks/use-toast";
 const Index = () => {
   const handleFormSubmit = async (formData: any) => {
     try {
-      // Using a mock API endpoint for demonstration
-      const response = await fetch('https://api.example.com/submit-form', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Log the form data to console for debugging
+      console.log('Form submitted with data:', formData);
       
       toast({
         title: "Formulár úspešne odoslaný",
         description: "Ďakujeme za váš záujem. Budeme vás čoskoro kontaktovať.",
       });
 
-      return data;
+      return { success: true };
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
         variant: "destructive",
         title: "Chyba pri odosielaní",
-        description: "Prosím, skontrolujte svoje internetové pripojenie a skúste to znova.",
+        description: "Prosím, skúste to znova.",
       });
       throw error;
     }
