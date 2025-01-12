@@ -36,28 +36,33 @@ const Index = () => {
         title="Lacnejšia Hypotéka"
         description="Máte drahú hypotéku? Ušetríme vám stovky eur! Nenechajte banku zarábať na vás viac, než je nutné. Porovnáme za vás podmienky, vyjednáme nižšie splátky a pomôžeme vám ušetriť. Nečakajte na zmenu, kontaktujte nás a začnite šetriť ešte dnes!"
         cta="Zistite viac"
+        imagePath="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
       />
       <ServiceSection
         title="Hypotéky pre SZČO"
         description="Ste živnostník a máte obavy, že banka neuzná váš príjem? Pomôžeme vám získať hypotéku aj pri zložitejších podmienkach. Analyzujeme váš príjem, pripravíme potrebné podklady a nájdeme riešenie, ktoré vyhovuje vám aj banke."
         cta="Zistite viac"
         isReversed
+        imagePath="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952"
       />
       <ServiceSection
         title="Financovanie výstavby"
         description="Plánujete postaviť svoj vysnívaný dom? Financovanie výstavby môže byť komplikované, no my vás prevedieme každým krokom – od prvotného schválenia hypotéky až po čerpanie financií na jednotlivé etapy výstavby. Všetko bez zbytočných starostí."
         cta="Zistite viac"
+        imagePath="https://images.unsplash.com/photo-1487958449943-2429e8be8625"
       />
       <ServiceSection
         title="Ste SZČO a chcete mať PN 1 200 € mesačne?"
         description="Ako SZČO často myslíte najmä na prácu. Ale čo ak by ste nemohli pracovať? Ukážeme vám, ako si nastaviť poistenie, ktoré vám poskytne dostatok financií aj počas pracovnej neschopnosti."
         cta="Zistite viac"
         isReversed
+        imagePath="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
       />
       <ServiceSection
         title="Pre rodiny"
         description="Chcete mať istotu, že počas PN bude vás príjem dostatočný a vás štandard sa nezníži"
         cta="Zistite viac"
+        imagePath="https://images.unsplash.com/photo-1721322800607-8c38375eef04"
       />
       <Benefits />
       <Questionnaire onSubmit={handleFormSubmit} />

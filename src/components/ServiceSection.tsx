@@ -6,9 +6,16 @@ interface ServiceSectionProps {
   description: string;
   cta: string;
   isReversed?: boolean;
+  imagePath?: string;
 }
 
-export const ServiceSection = ({ title, description, cta, isReversed = false }: ServiceSectionProps) => {
+export const ServiceSection = ({ 
+  title, 
+  description, 
+  cta, 
+  isReversed = false,
+  imagePath = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+}: ServiceSectionProps) => {
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -29,7 +36,13 @@ export const ServiceSection = ({ title, description, cta, isReversed = false }: 
               {cta}
             </Button>
           </div>
-          <div className="flex-1 bg-black/50 rounded-lg h-64 animate-fade-in border border-white/10" />
+          <div className="flex-1 overflow-hidden rounded-lg border border-white/10">
+            <img 
+              src={imagePath} 
+              alt={title}
+              className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </div>
         </div>
       </div>
     </motion.section>

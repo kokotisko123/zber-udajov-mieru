@@ -66,7 +66,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
         className="max-w-2xl mx-auto"
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
-          Buďte pri začiatku
+          Dotazník
         </h2>
         <p className="text-xl text-gray-400 mb-12">
           Nechajte nám kontakt a my sa vám v krátkom čase ozveme. Po odoslaní formulára vám budú zaslané ďalšie informácie na vašu e-mailovú adresu.
