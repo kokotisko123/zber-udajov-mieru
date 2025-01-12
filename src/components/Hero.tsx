@@ -1,22 +1,13 @@
-import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 
 export const Hero = () => {
   return (
-    <motion.section 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <section 
       className="min-h-screen flex flex-col items-start justify-center px-6 md:px-12 py-16 bg-black text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0c1220] to-black opacity-90" />
       
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="relative z-10 max-w-3xl"
-      >
+      <div className="relative z-10 max-w-3xl">
         <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
           Finančné riešenia pre vašu budúcnosť
         </h1>
@@ -30,7 +21,7 @@ export const Hero = () => {
         >
           Vyplniť dotazník
         </Button>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 };
