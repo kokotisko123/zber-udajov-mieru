@@ -48,6 +48,17 @@ const Index = () => {
         description="Plánujete postaviť svoj vysnívaný dom? Financovanie výstavby môže byť komplikované, no my vás prevedieme každým krokom – od prvotného schválenia hypotéky až po čerpanie financií na jednotlivé etapy výstavby. Všetko bez zbytočných starostí."
         cta="Zistite viac"
       />
+      <ServiceSection
+        title="Ste SZČO a chcete mať PN 1 200 € mesačne?"
+        description="Ako SZČO často myslíte najmä na prácu. Ale čo ak by ste nemohli pracovať? Ukážeme vám, ako si nastaviť poistenie, ktoré vám poskytne dostatok financií aj počas pracovnej neschopnosti."
+        cta="Zistite viac"
+        isReversed
+      />
+      <ServiceSection
+        title="Pre rodiny"
+        description="Chcete mať istotu, že počas PN bude vás príjem dostatočný a vás štandard sa nezníži"
+        cta="Zistite viac"
+      />
       <Benefits />
       <Questionnaire onSubmit={handleFormSubmit} />
       <footer className="py-6 text-center text-gray-400">

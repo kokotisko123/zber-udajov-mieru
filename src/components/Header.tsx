@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export const Header = () => {
   return (
@@ -16,7 +15,7 @@ export const Header = () => {
         <img 
           src="/lovable-uploads/51b19b55-d85b-48bf-9bd3-d9feab921004.png" 
           alt="Logo" 
-          className="w-[200px] h-[200px] object-contain"
+          className="w-[50px] h-[50px] object-contain"
         />
         <span className="text-2xl font-bold tracking-wider">budovaniemajetku.sk</span>
       </motion.div>
