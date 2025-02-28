@@ -1,3 +1,4 @@
+
 import { CheckCircle } from "lucide-react";
 
 const benefits = [
@@ -17,22 +18,22 @@ const benefits = [
 
 export const Benefits = () => {
   return (
-    <section className="py-16 px-4 bg-[#0c1220]">
+    <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-white mb-12">
+        <h2 className="text-3xl font-bold text-center text-black mb-12">
           Prečo spolupracovať s nami?
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((benefit) => (
             <div
               key={benefit.title}
-              className="bg-black/50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-white/10"
+              className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-red-600/20"
             >
-              <CheckCircle className="w-12 h-12 text-[#0EA5E9] mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <CheckCircle className="w-12 h-12 text-red-600 mb-4" />
+              <h3 className="text-xl font-semibold text-black mb-2">
                 {benefit.title}
               </h3>
-              <p className="text-gray-400">{benefit.description}</p>
+              <p className="text-gray-700">{benefit.description}</p>
             </div>
           ))}
         </div>

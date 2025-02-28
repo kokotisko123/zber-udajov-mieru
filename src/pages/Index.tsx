@@ -1,3 +1,4 @@
+
 import { Hero } from "@/components/Hero";
 import { ServiceSection } from "@/components/ServiceSection";
 import { Benefits } from "@/components/Benefits";
@@ -66,8 +67,8 @@ const Index = () => {
       />
       <Benefits />
       <Questionnaire onSubmit={handleFormSubmit} />
-      <footer className="py-6 text-center text-gray-400">
-        © 2025 - budovaniemajetku.sk
+      <footer className="py-6 text-center text-gray-700 bg-white border-t border-red-600/20">
+        © 2025 OK Riešenia – Všetky práva vyhradené.
       </footer>
     </div>
   );
