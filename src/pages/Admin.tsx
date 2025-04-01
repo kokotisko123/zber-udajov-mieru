@@ -17,7 +17,7 @@ interface FormData {
 
 const STORAGE_KEY = "ok_riesenia_submissions";
 // Google Sheet Web App URL - should match the one in Questionnaire.tsx
-const GOOGLE_SHEET_URL = "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbx7P3ESK8VBYfPy8I40RtFEtBZzZVQnofz-C38xJCN4ySSI320ObKReCf7-G8_L5JpE4w/exec";
 
 const Admin = () => {
   const [submissions, setSubmissions] = useState<FormData[]>([]);
@@ -154,7 +154,7 @@ const Admin = () => {
             </div>
           </div>
           
-          {GOOGLE_SHEET_URL && GOOGLE_SHEET_URL !== "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE" ? (
+          {GOOGLE_SHEET_URL && GOOGLE_SHEET_URL !== "https://script.google.com/macros/s/AKfycbx7P3ESK8VBYfPy8I40RtFEtBZzZVQnofz-C38xJCN4ySSI320ObKReCf7-G8_L5JpE4w/exec" ? (
             <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
               <p className="text-green-800">
                 <span className="font-bold">✓ Integrácia s Google Sheets je aktívna</span><br />
