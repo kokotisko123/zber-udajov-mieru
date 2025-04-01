@@ -1,19 +1,32 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Checkbox } from "./ui/checkbox";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } from "./ui/dialog";
 
 interface QuestionnaireProps {
   onSubmit: (data: any) => void;
 }
 
+interface FormData {
+  goal: string;
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  location: string;
+  privacyAccepted: boolean;
+  submissionDate?: string;
+}
+
+const STORAGE_KEY = "ok_riesenia_submissions";
+
 export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     goal: "",
     name: "",
     surname: "",
@@ -22,6 +35,38 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
     location: "",
     privacyAccepted: false,
   });
+  
+  const [submissions, setSubmissions] = useState<FormData[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Load existing submissions from localStorage on component mount
+  useEffect(() => {
+    const savedSubmissions = localStorage.getItem(STORAGE_KEY);
+    if (savedSubmissions) {
+      try {
+        setSubmissions(JSON.parse(savedSubmissions));
+      } catch (error) {
+        console.error("Error loading saved submissions:", error);
+      }
+    }
+  }, []);
+
+  const saveSubmission = (data: FormData) => {
+    const newSubmission = {
+      ...data,
+      submissionDate: new Date().toISOString()
+    };
+    
+    const updatedSubmissions = [...submissions, newSubmission];
+    setSubmissions(updatedSubmissions);
+    
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSubmissions));
+      console.log("Submission saved successfully", newSubmission);
+    } catch (error) {
+      console.error("Error saving submission:", error);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,8 +74,17 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
       alert("Prosím, súhlaste so spracovaním osobných údajov");
       return;
     }
+    
+    setIsSubmitting(true);
+    
     try {
+      // Save to local storage first
+      saveSubmission(formData);
+      
+      // Submit through the provided callback (which shows toast notification)
       await onSubmit(formData);
+      
+      // Reset form after successful submission
       setFormData({
         goal: "",
         name: "",
@@ -42,6 +96,8 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -78,6 +134,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
               <Label className="text-white text-lg">Meno</Label>
               <Input
                 name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
                 className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
@@ -87,6 +144,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
               <Label className="text-white text-lg">Priezvisko</Label>
               <Input
                 name="surname"
+                value={formData.surname}
                 onChange={handleChange}
                 required
                 className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
@@ -97,6 +155,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
               <Input
                 name="email"
                 type="email"
+                value={formData.email}
                 onChange={handleChange}
                 required
                 className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
@@ -107,6 +166,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
               <Input
                 name="phone"
                 type="tel"
+                value={formData.phone}
                 onChange={handleChange}
                 required
                 placeholder="+421"
@@ -117,6 +177,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
               <Label className="text-white text-lg">Lokalita</Label>
               <Input
                 name="location"
+                value={formData.location}
                 onChange={handleChange}
                 required
                 className="bg-transparent border-white/20 text-white h-12 rounded-none focus:border-white"
@@ -127,6 +188,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
           <div className="space-y-4">
             <Label className="text-white text-lg">Vyberte z možností</Label>
             <RadioGroup
+              value={formData.goal}
               onValueChange={(value) => setFormData(prev => ({ ...prev, goal: value }))}
               className="space-y-4"
             >
@@ -169,9 +231,9 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
                   Zásadami ochrany osobných údajov
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                  <div className="p-6 text-left">
-                    <h2 className="text-2xl font-bold mb-4">Zásady ochrany osobných údajov</h2>
-                    <div className="space-y-4">
+                  <DialogTitle>Zásady ochrany osobných údajov</DialogTitle>
+                  <DialogDescription>
+                    <div className="space-y-4 py-4">
                       <div>
                         <h3 className="font-bold">1. Správca údajov</h3>
                         <p>Správcom vašich osobných údajov je Jozef Gergö, e-mail: okriesenia@gmail.com. Na korešpondenciu a osobné stretnutia používame adresu kancelárie: Vojenská 27, Levice 934 01 Oficiálne sídlo prevádzkovateľa je uvedené v obchodnom/živnostenskom registri.</p>
@@ -216,7 +278,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
                         <p>Ak máte akékoľvek otázky alebo požiadavky týkajúce sa ochrany osobných údajov, kontaktujte nás na: okriesenia@gmail.com</p>
                       </div>
                     </div>
-                  </div>
+                  </DialogDescription>
                 </DialogContent>
               </Dialog>
             </div>
@@ -224,9 +286,10 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 
           <Button
             type="submit"
-            className="w-full bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white h-12 rounded-lg transition-all duration-300 transform hover:translate-y-[-2px]"
+            disabled={isSubmitting}
+            className="w-full bg-red-600 hover:bg-red-700 text-white h-12 rounded-lg transition-all duration-300 transform hover:translate-y-[-2px]"
           >
-            Odoslať
+            {isSubmitting ? "Odosielam..." : "Odoslať"}
           </Button>
         </form>
       </motion.div>
