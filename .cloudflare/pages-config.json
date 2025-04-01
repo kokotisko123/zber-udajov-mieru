@@ -1,0 +1,5 @@
+
+{
+  "installCommand": "node build.js",
+  "buildCommand": "npm run build"
+}

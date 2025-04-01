@@ -1,0 +1,4 @@
+
+[cloudflare]
+install_command = "npm install"
+build_command = "node build.js"
