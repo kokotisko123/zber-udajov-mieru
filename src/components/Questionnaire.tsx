@@ -23,7 +23,7 @@ interface FormData {
 }
 
 const STORAGE_KEY = "ok_riesenia_submissions";
-const GOOGLE_SHEET_URL = "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbx7P3ESK8VBYfPy8I40RtFEtBZzZVQnofz-C38xJCN4ySSI320ObKReCf7-G8_L5JpE4w/exec";
 
 export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
   const [formData, setFormData] = useState<FormData>({
@@ -69,7 +69,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 
   const sendToGoogleSheet = async (data: FormData) => {
     try {
-      if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL === "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE") {
+      if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL === "https://script.google.com/macros/s/AKfycbx7P3ESK8VBYfPy8I40RtFEtBZzZVQnofz-C38xJCN4ySSI320ObKReCf7-G8_L5JpE4w/exec") {
         console.error("Google Sheet URL not configured");
         return false;
       }
