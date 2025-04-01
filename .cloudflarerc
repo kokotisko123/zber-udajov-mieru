@@ -1,4 +1,5 @@
 
 [cloudflare]
-install_command = "npm install"
-build_command = "node build.js"
+install_command = "npm install --no-package-lock"
+build_command = "npm run build"
+output_directory = "dist"
