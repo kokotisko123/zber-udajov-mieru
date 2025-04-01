@@ -16,6 +16,8 @@ interface FormData {
 }
 
 const STORAGE_KEY = "ok_riesenia_submissions";
+// Google Sheet Web App URL - should match the one in Questionnaire.tsx
+const GOOGLE_SHEET_URL = "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE";
 
 const Admin = () => {
   const [submissions, setSubmissions] = useState<FormData[]>([]);
@@ -150,6 +152,27 @@ const Admin = () => {
                 Vymazať všetky údaje
               </Button>
             </div>
+          </div>
+          
+          {GOOGLE_SHEET_URL && GOOGLE_SHEET_URL !== "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE" ? (
+            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
+              <p className="text-green-800">
+                <span className="font-bold">✓ Integrácia s Google Sheets je aktívna</span><br />
+                Všetky nové údaje z formulára sú odosielané do vašej Google Sheets tabuľky.
+              </p>
+            </div>
+          ) : (
+            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-md">
+              <p className="text-amber-800">
+                <span className="font-bold">⚠️ Integrácia s Google Sheets nie je nakonfigurovaná</span><br />
+                Prosím, nastavte URL adresu Google Sheet Web App v súbore Questionnaire.tsx a Admin.tsx.
+              </p>
+            </div>
+          )}
+          
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold mb-2">Miestne údaje (len z tohto prehliadača)</h2>
+            <p className="text-gray-600">Tieto údaje sú uložené lokálne vo vašom prehliadači. Pre centralizované ukladanie sa používa Google Sheets.</p>
           </div>
           
           {submissions.length === 0 ? (

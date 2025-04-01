@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
@@ -24,6 +23,7 @@ interface FormData {
 }
 
 const STORAGE_KEY = "ok_riesenia_submissions";
+const GOOGLE_SHEET_URL = "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE";
 
 export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
   const [formData, setFormData] = useState<FormData>({
@@ -39,7 +39,6 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
   const [submissions, setSubmissions] = useState<FormData[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Load existing submissions from localStorage on component mount
   useEffect(() => {
     const savedSubmissions = localStorage.getItem(STORAGE_KEY);
     if (savedSubmissions) {
@@ -62,9 +61,33 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
     
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSubmissions));
-      console.log("Submission saved successfully", newSubmission);
+      console.log("Submission saved locally", newSubmission);
     } catch (error) {
-      console.error("Error saving submission:", error);
+      console.error("Error saving submission locally:", error);
+    }
+  };
+
+  const sendToGoogleSheet = async (data: FormData) => {
+    try {
+      if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL === "YOUR_GOOGLE_SHEET_WEB_APP_URL_HERE") {
+        console.error("Google Sheet URL not configured");
+        return false;
+      }
+      
+      const response = await fetch(GOOGLE_SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      
+      console.log("Data sent to Google Sheet");
+      return true;
+    } catch (error) {
+      console.error("Error sending to Google Sheet:", error);
+      return false;
     }
   };
 
@@ -78,13 +101,12 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
     setIsSubmitting(true);
     
     try {
-      // Save to local storage first
       saveSubmission(formData);
       
-      // Submit through the provided callback (which shows toast notification)
+      await sendToGoogleSheet(formData);
+      
       await onSubmit(formData);
       
-      // Reset form after successful submission
       setFormData({
         goal: "",
         name: "",
