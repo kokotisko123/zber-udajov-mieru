@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
@@ -173,7 +174,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
                     <div className="space-y-4">
                       <div>
                         <h3 className="font-bold">1. Správca údajov</h3>
-                        <p>Správcom vašich osobných údajov je GerFinR s.r.o. , so sídlom na Pri tehelni 5, 934 01 Levice, e-mail: gerfinrsro@gmail.com.</p>
+                        <p>Správcom vašich osobných údajov je Jozef Gergö, e-mail: okriesenia@gmail.com. Na korešpondenciu a osobné stretnutia používame adresu kancelárie: Vojenská 27, Levice 934 01 Oficiálne sídlo prevádzkovateľa je uvedené v obchodnom/živnostenskom registri.</p>
                       </div>
                       <div>
                         <h3 className="font-bold">2. Aké údaje zbierame</h3>
@@ -212,7 +213,7 @@ export const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
                       </div>
                       <div>
                         <h3 className="font-bold">9. Kontaktujte nás</h3>
-                        <p>Ak máte akékoľvek otázky alebo požiadavky týkajúce sa ochrany osobných údajov, kontaktujte nás na: gerfinrsro@gmail.com</p>
+                        <p>Ak máte akékoľvek otázky alebo požiadavky týkajúce sa ochrany osobných údajov, kontaktujte nás na: okriesenia@gmail.com</p>
                       </div>
                     </div>
                   </div>
